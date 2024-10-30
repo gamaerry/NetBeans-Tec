@@ -14,11 +14,17 @@ public class Matrices3 {
                     break;
                 case 3: consultaCubiculo();
                     break;
+                case 4: terminaPrograma();
+                    break;
                 default:
                     System.out.println("¡Opción inválida!");
             }
             opcion = getOpcion();
         }
+    }
+
+    static void terminaPrograma() {
+        System.out.println("¡Hasta luego!");
         escaner.close();
     }
 
