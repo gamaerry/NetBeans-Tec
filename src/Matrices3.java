@@ -32,9 +32,9 @@ public class Matrices3 {
         System.out.println("Consulta cubículo:");
         int[] coordenadas = getCoordenadasValidas();
         if (coordenadas != null) {
-            if (cubiculos[coordenadas[0]][coordenadas[1]] != null) {
+            if (!cubiculoVacio(coordenadas[0], coordenadas[1]))
                 System.out.println("¡Cubículo ocupado por: " + cubiculos[coordenadas[0]][coordenadas[1]] + "!");
-            } else System.out.println("¡Cubículo vacío!");
+            else System.out.println("¡Cubículo vacío!");
         } else System.out.println("¡Coordenadas inválidas!");
     }
 
@@ -42,7 +42,7 @@ public class Matrices3 {
         System.out.println("Libera cubículo:");
         int[] coordenadas = getCoordenadasValidas();
         if (coordenadas != null) {
-            if (cubiculos[coordenadas[0]][coordenadas[1]] != null) {
+            if (!cubiculoVacio(coordenadas[0], coordenadas[1])) {
                 cubiculos[coordenadas[0]][coordenadas[1]] = null;
                 System.out.println("¡Cubículo liberado correctamente!");
             } else System.out.println("¡Cubículo vacío!");
@@ -52,9 +52,8 @@ public class Matrices3 {
     static void imprimeCubiculos() {
         System.out.println("\nCubículos:");
         for (int i = 0; i < FILAS; i++) {
-            for (int j = 0; j < COLUMNAS; j++) {
-                System.out.print(cubiculos[i][j] == null ? "(Vacío)\t\t" : cubiculos[i][j] + "\t");
-            }
+            for (int j = 0; j < COLUMNAS; j++)
+                System.out.print(cubiculoVacio(i, i) ? "(Vacío)\t\t" : cubiculos[i][j] + "\t");
             System.out.println();
         }
     }
@@ -63,7 +62,7 @@ public class Matrices3 {
         System.out.println("Reserva cubículo:");
         int[] coordenadas = getCoordenadasValidas();
         if (coordenadas != null) {
-            if (cubiculos[coordenadas[0]][coordenadas[1]] == null) {
+            if (cubiculoVacio(coordenadas[0], coordenadas[1])) {
                 System.out.println("Ingrese el nombre del estudiante");
                 String nombre = escaner.nextLine();
                 cubiculos[coordenadas[0]][coordenadas[1]] = nombre;
@@ -87,5 +86,9 @@ public class Matrices3 {
             String[] coordenadas = coordenadasDelCubiculo.split(",");
             return new int[]{Integer.parseInt(coordenadas[0]), Integer.parseInt(coordenadas[1])};
         } else return null;
+    }
+
+    static boolean cubiculoVacio(int fila, int columna) {
+        return cubiculos[fila][columna] == null;
     }
 }
