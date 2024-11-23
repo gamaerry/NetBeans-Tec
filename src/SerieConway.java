@@ -7,14 +7,13 @@ public class SerieConway {
         int filas = escaner.nextInt();
         int[][] serie = new int[100][100];
         serie[0][0] = 1;
-        for (int i = 0; i < (filas-1); i++) {
-            for (int j = 0, k = 0, contador = 1; j > serie.length - 1 || k > serie.length - 1 || serie[i][k] != 0; j+=2, contador = 1) {
+        for (int i = 0; i < (filas-1); i++) 
+            for (int j = 0, k = 0, contador = 1; j < serie.length && k < serie.length && serie[i][k] != 0; j+=2, contador = 1) {
                 while (serie[i][k] == serie[i][++k])
                     contador++;
                 serie[i + 1][j] = contador;
                 serie[i + 1][j + 1] = serie[i][k-1];
             }
-        }
         printSerie(serie, filas);
         escaner.close();
     }
