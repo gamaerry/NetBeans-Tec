@@ -1,24 +1,28 @@
 package ProjectEuler;
 
+import java.util.ArrayList;
+
 public class P3LargestPrimeFactor {
     public static void main(String[] args) {
-        long n = 561;
-        int i = 3;
+        System.out.println(getFactoresPrimos(600851475143L));
+    }
+
+    static ArrayList<Long> getFactoresPrimos(long n) {
+        ArrayList<Long> factores = new ArrayList<>();
+        long i = 3;
         while (n % 2 == 0) {
-            System.out.println(2);
+            factores.add(2L);
             n /= 2;
         }
         while (i * i <= n) {
             while (n % i == 0) {
-                System.out.println(i);
+                factores.add(i);
                 n /= i;
             }
             i += 2;
         }
-        if (n > 1) {  // Si queda un número primo mayor que sqrt(n) (no hay no puede haber mas de dos)
-            System.out.println(n);
-            System.out.println("n es un semiprimo fuerte!");
-        }
-        
+        if (n > 1) // Por si queda un número primo mayor que sqrt(n) (no puede quedar mas de uno)
+            factores.add(n);
+        return factores;
     }
 }

@@ -3,12 +3,11 @@ package ProjectEuler;
 import java.util.ArrayList;
 
 public class P710001stPrime {
-    static final int N = 5_000_000;
     public static void main(String[] args) {
-        optimizada();
+        System.out.println(getEnesimoPrimo(10_001));
     }
 
-    static void optimizada() {
+    static int getEnesimoPrimo(int N) {
         final ArrayList<Integer> listaDePrimos = new ArrayList<>();
         listaDePrimos.add(3);
         listaDePrimos.add(5);
@@ -31,6 +30,6 @@ public class P710001stPrime {
                 n++;
             }
         }
-        System.out.println(actual);
+        return actual;
     }
 }

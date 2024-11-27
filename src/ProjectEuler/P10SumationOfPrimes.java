@@ -1,33 +1,33 @@
 package ProjectEuler;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class P10SumationOfPrimes {
     public static void main(String[] args) {
-        optimizada();
+        System.out.println(getListaDePrimos(2_000_000).stream().mapToLong(Long::valueOf).sum());
     }
-    static void optimizada() {
-        ArrayList<Integer> listaDePrimos = new ArrayList<>();
-        boolean actualEsPrimo = true;
-        int actual = 9;
-        listaDePrimos.add(3);
-        listaDePrimos.add(5);
-        listaDePrimos.add(7); // el 2 puede omitirse ya que ninguno de los números impares es divisible por 2
-        int p = listaDePrimos.get(0);
-        long suma = 17;
-        for (int i = 0; actual < 2_000_000; actualEsPrimo = true, i = 0) {
-            p = listaDePrimos.get(i);
-            actual += 2; // inicia corroborando si 11 (el 5to) es primo
-            while (p * p <= actual)
-                if (actual % p == 0){
-                    actualEsPrimo = false;
-                    break;
-                } else p = listaDePrimos.get(++i);
-            if (actualEsPrimo){
-                listaDePrimos.add(actual);
-                suma += actual;
-            }
-        }
-        System.out.println(suma);
+
+    static List<Integer> getListaDePrimos(int limiteExclusivo) {
+        if (limiteExclusivo <= 2) 
+            return List.of(); // No hay primos menores que 2
+            
+        boolean[] esPrimo = new boolean[limiteExclusivo];
+        Arrays.fill(esPrimo, true); // Inicialmente, marcamos a todos como primos
+        esPrimo[0] = esPrimo[1] = false; // 0 y 1 no son primos
+
+        // Marcar múltiplos de cada número como no primos
+        for (int i = 2; i * i < limiteExclusivo; i++)
+            if (esPrimo[i]) // es decir si no ha sido desmarcado en anteriores iteraciones
+                for (int j = i * i; j < limiteExclusivo; j += i) // desmarca multiplos de i
+                    esPrimo[j] = false;
+
+        List<Integer> primos = new ArrayList<>();
+        for (int i = 2; i < limiteExclusivo; i++)
+            if (esPrimo[i]) 
+                primos.add(i);
+
+        return primos;
     }
 }
