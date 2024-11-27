@@ -24,11 +24,11 @@ public class MaximumPathSum1 {
             for (int j = 0; j < s.split("\\n")[i].split(" ").length; j++) 
                 piramide[i][j] = Integer.parseInt( s.split("\\n")[i].split(" ")[j] );
         int sumaMaxima = 0;
+        String caminoActual;
         for (int r = 0, suma = 75; r < 16_384; r++, suma = 75) {
-            String camino = String.format("%14s", Integer.toBinaryString(r)).replace(" ", "0");
+            caminoActual = String.format("%14s", Integer.toBinaryString(r)).replace(" ", "0");
             for (int i = 1, columnaActual = 0; i < piramide.length; i++) {
-                int delta = Integer.parseInt(camino.charAt(i-1) + "");
-                columnaActual = columnaActual + delta;
+                columnaActual += Integer.parseInt(caminoActual.charAt(i-1) + "");
                 suma += piramide[i][columnaActual];
             }
             sumaMaxima = Math.max(sumaMaxima, suma);
