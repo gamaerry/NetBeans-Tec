@@ -2,7 +2,7 @@ package ProjectEuler;
 
 import java.util.ArrayList;
 
-public class SumationOfPrimes {
+public class P10SumationOfPrimes {
     public static void main(String[] args) {
         optimizada();
     }

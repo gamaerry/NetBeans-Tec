@@ -1,6 +1,6 @@
 package ProjectEuler;
 
-public class SmallestMultiple {
+public class P5SmallestMultiple {
     public static void main(String[] args) {
         int n = 20;
         int producto = 2;

@@ -1,6 +1,6 @@
 package ProjectEuler;
 
-public class SumSquareDifference {
+public class P6SumSquareDifference {
     public static void main(String[] args) {
         long cuadradoDeLaSuma = (long) Math.pow(100*101/2, 2);
         long sumaDeCuadrados = 0;

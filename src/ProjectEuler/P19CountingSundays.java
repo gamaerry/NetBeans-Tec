@@ -1,6 +1,6 @@
 package ProjectEuler;
 
-public class CountingSundays {
+public class P19CountingSundays {
     public static void main(String[] args) {
         int diaActual = (1 + 365) % 7, domingosEnPrimero = 0, diasEnElMes;
         boolean[] mesesCon31 = new boolean[12];

@@ -1,6 +1,6 @@
 package ProjectEuler;
 
-public class HighlyDivisibleTriangularNumber {
+public class P12HighlyDivisibleTriangularNumber {
     public static void main(String[] args) {
         int divisores = 1;
         int nActual = 1, iActual=1, n, i, ocurrencias;

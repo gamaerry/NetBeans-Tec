@@ -1,5 +1,5 @@
 package ProjectEuler;
-public class LargestProductInSeries {
+public class P8LargestProductInSeries {
     public static void main(String[] args) {
         String s = """
             73167176531330624919225119674426574742355349194934

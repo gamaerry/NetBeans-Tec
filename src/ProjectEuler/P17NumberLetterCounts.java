@@ -1,5 +1,5 @@
 package ProjectEuler;
-public class NumberLetterCounts {
+public class P17NumberLetterCounts {
     public static void main(String[] args) {
         int[] unidades = {0, 3, 3, 5, 4, 4, 3, 5, 5, 4};
         int[] decenas =  {0, 4, 6, 6, 5, 5, 5, 7, 6, 6};

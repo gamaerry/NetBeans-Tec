@@ -1,6 +1,6 @@
 package ProjectEuler;
 
-public class EvenFibonacciNumbers {
+public class P2EvenFibonacciNumbers {
     public static void main(String[] args) {
         int suma = 0;
         boolean excede = false;

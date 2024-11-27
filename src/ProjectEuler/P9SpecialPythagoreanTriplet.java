@@ -1,5 +1,5 @@
 package ProjectEuler;
-public class SpecialPythagoreanTriplet {
+public class P9SpecialPythagoreanTriplet {
     public static void main(String[] args) {
         int[] t = terna();
         System.out.println(t[0]*t[1]*t[2]);

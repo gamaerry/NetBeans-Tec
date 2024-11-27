@@ -1,6 +1,6 @@
 package ProjectEuler;
 
-public class LargestPrimeFactor {
+public class P3LargestPrimeFactor {
     public static void main(String[] args) {
         long n = 561;
         int i = 3;

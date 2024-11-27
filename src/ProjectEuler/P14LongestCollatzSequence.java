@@ -2,7 +2,7 @@ package ProjectEuler;
 
 import java.util.HashSet;
 
-public class LongestCollatzSequence {
+public class P14LongestCollatzSequence {
     public static void main(String[] args) {
         long mayor = 2;
         long puntajeMayor = 1;

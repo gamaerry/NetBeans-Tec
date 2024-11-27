@@ -2,7 +2,7 @@ package ProjectEuler;
 
 import java.util.ArrayList;
 
-public class NesimePrime {
+public class P710001stPrime {
     static final int N = 5_000_000;
     public static void main(String[] args) {
         optimizada();

@@ -1,6 +1,6 @@
 package ProjectEuler;
 
-public class MaximumPathSum1 {
+public class P18MaximumPathSum1 {
     static String s = """
 75
 95 64

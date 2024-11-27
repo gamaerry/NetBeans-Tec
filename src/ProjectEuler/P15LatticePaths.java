@@ -2,7 +2,7 @@ package ProjectEuler;
 
 import java.math.BigInteger;
 
-public class LatticePaths {
+public class P15LatticePaths {
     public static void main(String[] args) {
         System.out.println(factorial(BigInteger.valueOf(40)).divide(factorial(BigInteger.valueOf(20)).pow(2)));
     }

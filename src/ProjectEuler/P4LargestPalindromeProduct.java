@@ -1,6 +1,6 @@
 package ProjectEuler;
 
-public class LargestPalindromeProduct {
+public class P4LargestPalindromeProduct {
     public static void main(String[] args) {
         int palindromo = 0;
         boolean palindromoEncontrado = false;

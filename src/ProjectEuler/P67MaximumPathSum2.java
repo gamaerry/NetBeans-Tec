@@ -4,7 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
-public class MaximumPathSum2 {
+public class P67MaximumPathSum2 {
     public static void main(String[] args) throws FileNotFoundException {
         Scanner txtEscaneado = new Scanner(new File("src/ProjectEuler/0067_triangle.txt"));
         int[][] piramide = new int[100][100];
