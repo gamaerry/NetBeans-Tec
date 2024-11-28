@@ -1,3 +1,4 @@
+package NetBeansTec;
 import java.io.IOException;
 
 public class Arreglos4 {

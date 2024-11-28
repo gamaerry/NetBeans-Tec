@@ -1,3 +1,4 @@
+package NetBeansTec;
 public class Metodos1 {
     public static void main(String[] args) {
         System.out.println(serieULAM(5,10));

@@ -1,3 +1,4 @@
+package NetBeansTec;
 
 import java.util.Random;
 

@@ -1,3 +1,4 @@
+package NetBeansTec;
 import java.util.Random;
 public class Arreglos {
     public static void main(String[] args) {
