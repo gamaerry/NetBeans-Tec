@@ -51,7 +51,7 @@ public class P18MaximumPathSum1 {
         return suma;
     }
 
-    static int getMaximaSuma(int[][] piramide) {
+    static int getMaximaSuma1(int[][] piramide) {
         return getCaminoBinario(piramide.length - 1).parallelStream().mapToInt(posibilidad -> {
             int sumaPosibilidad = piramide[0][0];
             for (int i = 1, columnaActual = 0; i < piramide.length; i++) {
