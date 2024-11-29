@@ -1,5 +1,9 @@
 package ProjectEuler;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+
 public class P11LargestProductInAGrid {
     static String s = """
 08 02 22 97 38 15 00 40 00 75 04 05 07 78 52 12 50 77 91 08
@@ -24,10 +28,7 @@ public class P11LargestProductInAGrid {
 01 70 54 71 83 51 54 69 16 92 33 48 61 43 52 01 89 19 67 48
     """;
     public static void main(String[] args) {
-        int[][] matriz = new int[20][20];
-        for (int i = 0; i < matriz.length; i++) 
-            for (int j = 0; j < matriz[0].length; j++) 
-                matriz[i][j] = Integer.parseInt(s.split("\\n")[i].split(" ")[j]);
+        int[][] matriz = getMatrizFromString(s, 20, 20, "\\n", " ");
         long mayor = 0;
         for (int i = 0; i < matriz.length; i++)
             for (int j = 0; j < matriz[0].length; j++)
@@ -38,5 +39,46 @@ public class P11LargestProductInAGrid {
                     mayor = (j - 3) >= 0 ? Math.max(mayor, matriz[i][j]*matriz[i+1][j-1]*matriz[i+2][j-2]*matriz[i+3][j-3]) : mayor;
                 }
         System.out.println(mayor);
+    }
+
+    static int[][] getMatrizFromString(String s, int renglones, int columnas, String separadorFilas, String separadorColumnas) {
+        int[][] matriz = new int[renglones][columnas];
+        for (int i = 0; i < renglones; i++) 
+            for (int j = 0; j < s.split(separadorFilas)[i].split(separadorColumnas).length; j++)
+                matriz[i][j] = Integer.parseInt(s.split(separadorFilas)[i].split(separadorColumnas)[j]);
+        return matriz;
+    }
+
+    static int[][] getMatrizFromString(String s, int renglones, int columnas) {
+        return getMatrizFromString(s, renglones, columnas, "\\n", " ");
+    }
+
+    static int[][] getMatrizFromTxt(String rutaRelativa, int filas, int columnas, String separadorColumnas) {
+        try (Scanner txtEscaneado = new Scanner(new File(rutaRelativa))) {
+            int[][] matriz = new int[filas][columnas];
+            for (int i = 0; i < filas; i++) {
+                String[] lineaActual = txtEscaneado.nextLine().split(separadorColumnas);
+                for (int j = 0; j < lineaActual.length; j++) 
+                    matriz[i][j] = Integer.parseInt( lineaActual[j] );
+            }
+            return matriz;
+        } catch (FileNotFoundException e) { return null; }
+    }
+
+    static int[][] getMatrizFromTxt(String s, int renglones, int columnas) {
+        return getMatrizFromTxt(s,renglones,columnas, " ");
+    }
+
+    static void printMatriz(int[][] matriz, String separadorElemento, boolean omitirCeros) {
+        for (int[] renglon : matriz) {
+            for (int elemento : renglon)
+                if (!omitirCeros || elemento != 0) 
+                    System.out.print(elemento + separadorElemento);
+            System.out.println();
+        }
+    }
+
+    static void printMatriz(int[][] matriz) {
+        printMatriz(matriz, "\t", false);
     }
 }

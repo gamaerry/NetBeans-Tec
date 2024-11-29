@@ -1,35 +1,59 @@
 package ProjectEuler;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class P12HighlyDivisibleTriangularNumber {
     public static void main(String[] args) {
-        int divisores = 1;
-        int nActual = 1, iActual=1, n, i, ocurrencias;
+        int n = 1, i = 1, divisores = 1;
         while (divisores < 500) {
-            divisores = 1;
-            ocurrencias = 1;
-            nActual += ++iActual; 
-            n = nActual;
-            while (n % 2 == 0) {
-                ocurrencias++;
-                n /= 2;
-            }
-            i = 3;
-            divisores *= ocurrencias;
-            ocurrencias = 1;
-            while (i * i <= n) {
-                while (n % i == 0) {
-                    ocurrencias++;
-                    n /= i;
-                }
-                divisores *= ocurrencias;
-                ocurrencias = 1;
-                i += 2;
-            }
-            if (n > 1)  // Si queda un número primo mayor que sqrt(n) (no hay no puede haber mas de dos)
-                ocurrencias++;
-            divisores *= ocurrencias;
-            ocurrencias = 1;
+            n += ++i;
+            divisores = getNumeroDeDivisores(n);
         }
-        System.out.println(nActual);
+        System.out.println(n);
+    }
+    
+    static int getNumeroDeDivisores(int x) {
+        int ocurrencias = 1, i = 3, divisores = 1;
+        while (x % 2 == 0) {
+            ocurrencias++;
+            x /= 2;
+        }
+        divisores *= ocurrencias;
+        ocurrencias = 1;
+        while (i * i <= x) {
+            while (x % i == 0) {
+                ocurrencias++;
+                x /= i;
+            }
+            divisores *= ocurrencias;
+            ocurrencias = 1;
+            i += 2;
+        }
+        if (x > 1)  // Si queda un número primo mayor que sqrt(n) (no hay no puede haber mas de dos)
+            ocurrencias++;
+        divisores *= ocurrencias;
+        // la funcion se basa en la formula (n1 + 1)(n2 + 1)...(nm + 1)
+        // donde cada nm es el numero de veces que un primo pm divide a x 
+        return divisores;
+    }
+    
+    static List<Integer> getFactorizacionPrima(int x) {
+        List<Integer> primos = new ArrayList<>();
+        int i = 3;
+        while (x % 2 == 0) {
+            primos.add(2);
+            x /= 2;
+        }
+        while (i * i <= x) {
+            while (x % i == 0) {
+                primos.add(i);
+                x /= i;
+            }
+            i += 2;
+        }
+        if (x > 1)  // Si queda un número primo mayor que sqrt(n) (no hay no puede haber mas de dos)
+            primos.add(x);
+        return primos;
     }
 }

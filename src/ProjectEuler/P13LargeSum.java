@@ -104,18 +104,21 @@ public class P13LargeSum {
 53503534226472524250874054075591789781264330331690
     """;
     public static void main(String[] args) {
-        String[] numeros = new String[100];
-        long suma = 0;
-        for (int i = 0; i < numeros.length; i++) {
-            numeros[i] = s.split("\\n")[i];
-        }
+        String[] numeros = getArrayFromString(s, 100);
+        long sumaTotal = 0;
         for (int j = 0, k = 10; j < 11; j++, k--) {
             long sumaColumna = 0;
-            for (int i = 0; i < numeros.length; i++) {
+            for (int i = 0; i < numeros.length; i++)
                 sumaColumna += Long.parseLong(numeros[i].charAt(j) + "") * (long) Math.pow(10, k);
-            }
-            suma += sumaColumna;
+            sumaTotal += sumaColumna;
         }
-        System.out.println((suma + "").substring(0,10));
+        System.out.println((sumaTotal + "").substring(0,10));
     }
+
+    static String[] getArrayFromString(String s, int dimension) {
+        String[] arreglo = new String[dimension];
+        for (int i = 0; i < dimension; i++)
+            arreglo[i] = s.split("\\n")[i];
+        return arreglo;
+    } 
 }
