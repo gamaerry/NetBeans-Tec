@@ -1,28 +1,29 @@
 package ProjectEuler;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class P3LargestPrimeFactor {
     public static void main(String[] args) {
-        System.out.println(getFactoresPrimos(600851475143L));
+        System.out.println(getFactoresPrimos(600851475143L).getLast());
     }
 
-    static ArrayList<Long> getFactoresPrimos(long n) {
-        ArrayList<Long> factores = new ArrayList<>();
+    static List<Long> getFactoresPrimos(long x) {
+        List<Long> primos = new ArrayList<>();
         long i = 3;
-        while (n % 2 == 0) {
-            factores.add(2L);
-            n /= 2;
+        while (x % 2 == 0) {
+            primos.add(2L);
+            x /= 2;
         }
-        while (i * i <= n) {
-            while (n % i == 0) {
-                factores.add(i);
-                n /= i;
+        while (i * i <= x) {
+            while (x % i == 0) {
+                primos.add(i);
+                x /= i;
             }
             i += 2;
         }
-        if (n > 1) // Por si queda un número primo mayor que sqrt(n) (no puede quedar mas de uno)
-            factores.add(n);
-        return factores;
+        if (x > 1)  // Si queda un número primo mayor que sqrt(n) (no hay no puede haber mas de dos)
+            primos.add(x);
+        return primos;
     }
 }
