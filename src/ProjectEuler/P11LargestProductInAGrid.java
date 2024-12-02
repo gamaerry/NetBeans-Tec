@@ -2,6 +2,8 @@ package ProjectEuler;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class P11LargestProductInAGrid {
@@ -62,6 +64,12 @@ public class P11LargestProductInAGrid {
                     matriz[i][j] = Integer.parseInt( lineaActual[j] );
             }
             return matriz;
+        } catch (FileNotFoundException e) { return null; }
+    }
+
+    static String[] getListFromOneLineTxt(String rutaRelativa, String separador) {
+        try (Scanner txtEscaneado = new Scanner(new File(rutaRelativa))) {
+            return txtEscaneado.nextLine().split(separador);
         } catch (FileNotFoundException e) { return null; }
     }
 
