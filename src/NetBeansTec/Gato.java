@@ -15,12 +15,22 @@ public class Gato {
         char[] jugadores = nextJugadores();
         inicializarGato(dimension, CASILLA_VACIA);
         printGato(gato);
-        while (!hayGanador) {
-            nextJugada(jugadores[actual % 2], ESCANER, CASILLA_VACIA);
+        while (!hayGanador && !tableroLleno()) {
+            nextJugada(jugadores, actual, ESCANER, CASILLA_VACIA);
             hayGanador = revisarGanador(jugadores[actual++ % 2]);
         }
-        System.out.println("¡Ha ganado el Jugador " + (--actual%2 + 1) + " ("+ jugadores[actual % 2] +")!");
+        if (!hayGanador) 
+            System.out.println("¡Empate!");
+        else
+            System.out.println("¡Ha ganado el Jugador " + (--actual%2 + 1) + " ("+ jugadores[actual % 2] +")!");
         ESCANER.close();
+    }
+
+    static boolean tableroLleno() {
+        for (char[] linea : gato) 
+            for (char c : linea) 
+                if (c == ' ') return false;
+        return true;
     }
 
     static boolean revisarGanador(char jugador) {
@@ -45,9 +55,17 @@ public class Gato {
                 }
             }
         }
-        // revisar diagonales
+        // revisar diagonal
         for (int i = 0; i < gato.length; i++) {
             if (gato[i][i] != jugador) break;
+            if (i == gato.length - 1) {
+                hayGanador = true;
+                break;
+            }
+        }
+        // revisar diagonal inversa
+        for (int i = 0; i < gato.length; i++) {
+            if (gato[i][gato.length - 1 - i] != jugador) break;
             if (i == gato.length - 1) {
                 hayGanador = true;
                 break;
@@ -56,14 +74,14 @@ public class Gato {
         return hayGanador;
     }
 
-    static void nextJugada(char jugador, Scanner escaner, char casillaVacia) throws IOException {
-        System.out.print("Jugador " + jugador + " ingrese la coordenada: ");
+    static void nextJugada(char[] jugadores, int actual, Scanner escaner, char casillaVacia) throws IOException {
+        System.out.print("Jugador " + (actual%2 + 1) + " (" + jugadores[actual % 2] + ") ingrese la coordenada: ");
         int[] coordenada = nextCasillaValida(escaner); // el formato debe ser "f,c"
         while (gato[coordenada[0] - 1][coordenada[1] - 1] != casillaVacia) {
             System.out.print("Casilla ya ocupada por " + gato[coordenada[0] - 1][coordenada[1] - 1] + ", ingrese de nuevo: ");
             coordenada = nextCasillaValida(escaner);
         }
-        gato[coordenada[0] - 1][coordenada[1] - 1] = jugador;
+        gato[coordenada[0] - 1][coordenada[1] - 1] = jugadores[actual % 2];
         printGato(gato);
     }
 
