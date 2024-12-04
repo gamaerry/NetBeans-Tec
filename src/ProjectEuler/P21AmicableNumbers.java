@@ -37,7 +37,7 @@ public class P21AmicableNumbers {
             .map(n -> n<<1).boxed().collect(Collectors.toSet());
     }
 
-    private static IntStream getDivisores(int x) {
+    static IntStream getDivisores(int x) { // incluye al mismo x
         return IntStream.rangeClosed(1, (int) Math.sqrt(x))
             .filter(i -> x % i == 0)
             .flatMap(i -> (i == x / i) ? IntStream.of(i) : IntStream.of(i, x / i));
