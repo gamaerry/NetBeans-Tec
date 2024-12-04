@@ -14,7 +14,7 @@ public class Gato {
         int dimension = nextDimension();
         char[] jugadores = nextJugadores();
         inicializarGato(dimension, CASILLA_VACIA);
-        printGato(gato);
+        printGato();
         while (!hayGanador && !tableroLleno()) {
             nextJugada(jugadores, actual, ESCANER, CASILLA_VACIA);
             hayGanador = revisarGanador(jugadores[actual++ % 2]);
@@ -82,7 +82,7 @@ public class Gato {
             coordenada = nextCasillaValida(escaner);
         }
         gato[coordenada[0] - 1][coordenada[1] - 1] = jugadores[actual % 2];
-        printGato(gato);
+        printGato();
     }
 
     static int[] nextCasillaValida(Scanner escaner) {
@@ -106,16 +106,16 @@ public class Gato {
         return n < 1 || n > gato.length;
     }
 
-    static void printGato(char[][] matriz) {
-        for (int i = 0; i < matriz.length; i++) {
+    static void printGato() {
+        for (int i = 0; i < gato.length; i++) {
             System.out.print(" ");
-            for (int j = 0; j < matriz[0].length ; j++) {
-                System.out.print(matriz[i][j] + (j+1 == matriz[0].length ? "" : " | "));
+            for (int j = 0; j < gato[0].length ; j++) {
+                System.out.print(gato[i][j] + (j+1 == gato[0].length ? "" : " | "));
             }
             System.out.println();
-            if (i + 1 != matriz.length) {
-                for (int j = 0; j < matriz.length; j++) {
-                    System.out.print("–-–"+ (j+1 != matriz[0].length ? "|" : ""));
+            if (i + 1 != gato.length) {
+                for (int j = 0; j < gato.length; j++) {
+                    System.out.print("–-–"+ (j+1 != gato[0].length ? "|" : ""));
                 }
                 System.out.println();
             }
