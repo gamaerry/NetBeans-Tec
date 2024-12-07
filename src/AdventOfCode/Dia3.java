@@ -8,7 +8,7 @@ import java.util.Scanner;
 
 public class Dia3 {
     public static void main(String[] args) {
-        List<String> lista = getListaFromTxt("src/AdventOfCode/input_dia3.txt", 6);
+        List<String> lista = getListaFromTxt("src/AdventOfCode/input_dia3.txt");
         primerProblema(lista);
         segundoProblema(lista);
     }
@@ -56,10 +56,10 @@ public class Dia3 {
         return Integer.parseInt(parametros[0]) * Integer.parseInt(parametros[1]);
     }
 
-    static List<String> getListaFromTxt(String rutaRelativa, int filas) {
+    static List<String> getListaFromTxt(String rutaRelativa) {
         try (Scanner txtEscaneado = new Scanner(new File(rutaRelativa))) {
             List<String> lista = new ArrayList<>();
-            for (int i = 0; i < filas; i++) {
+            while (txtEscaneado.hasNextLine()) {
                 String lineaActual = txtEscaneado.nextLine();
                 lista.add(lineaActual);
             }
